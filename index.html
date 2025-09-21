@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Sorpresa para mi Bigotona</title>
+<style>
+  body {
+    background: #ffe6f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    font-family: 'Comic Sans MS', cursive;
+    overflow: hidden;
+    transition: background 2s;
+    padding-top: 40px;
+  }
+
+  body.romantic {
+    background: linear-gradient(270deg, #ff99cc, #ffb347, #ff6699, #ffcc70);
+    background-size: 800% 800%;
+    animation: fondoAnimado 10s ease infinite;
+  }
+
+  @keyframes fondoAnimado {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  h1 {
+    display: none;
+    color: #e60073;
+    text-shadow: 2px 2px #fff;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+    animation: aparecerTexto 2s ease forwards;
+  }
+
+  @keyframes aparecerTexto {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  #egg {
+    width: 200px;
+    height: 260px;
+    background: white;
+    border-radius: 50% 50% 45% 45%;
+    border: 4px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: #666;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+  }
+
+  #egg:hover {
+    transform: scale(1.1);
+  }
+
+  #cat {
+    display: none;
+    position: relative;
+    margin-top: 30px;
+  }
+
+  #cat img {
+    width: 300px;
+    animation: moverBrazo 1.2s infinite alternate ease-in-out;
+  }
+
+  @keyframes moverBrazo {
+    0% { transform: rotate(-2deg) translateY(0); }
+    100% { transform: rotate(2deg) translateY(-5px); }
+  }
+
+  #flower {
+    position: absolute;
+    top: 100px;
+    right: -30px;
+    width: 80px;
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 1.5s ease, opacity 1.5s ease;
+  }
+
+  #flower.show {
+    transform: scale(3);
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+  <h1 id="message">❤️ Te amo corazón ❤️<br>De parte de: tu cagadin XD</h1>
+  <div id="egg">🥚<br>Tócalo</div>
+  <div id="cat">
+    <img src="gatito.png" alt="Gatito kawaii con girasol">
+    <img id="flower" src="girasol.png" alt="Girasol">
+  </div>
+  <audio id="music" src="canciones.mp3"></audio>
+
+<script>
+  const egg = document.getElementById('egg');
+  const cat = document.getElementById('cat');
+  const msg = document.getElementById('message');
+  const music = document.getElementById('music');
+  const flower = document.getElementById('flower');
+
+  egg.addEventListener('click', () => {
+    egg.style.display = 'none';
+    document.body.classList.add('romantic');
+    msg.style.display = 'block';
+    cat.style.display = 'block';
+    music.play();
+
+    setTimeout(() => {
+      flower.classList.add('show');
+    }, 1000);
+  });
+</script>
+</body>
+</html>
